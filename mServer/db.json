@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "username": "sdf",
+      "firstName": "SADF",
+      "lastName": "ASDF",
+      "password": "ASDF",
+      "createdAt": 1484436403780,
+      "goals": []
+    },
+    {
+      "username": "sdf",
+      "firstName": "SADF",
+      "lastName": "ASDF",
+      "password": "ASDF",
+      "createdAt": 1484436680825,
+      "goals": []
+    },
+    {
+      "username": "sdf",
+      "firstName": "SADF",
+      "lastName": "ASDF",
+      "password": "ASDF",
+      "createdAt": 1484436927456,
+      "goals": []
+    }
+  ]
+}
