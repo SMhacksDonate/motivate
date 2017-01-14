@@ -1,3 +1,8 @@
+/***
+ * Purpose: load bootstrap ui angular modules
+ * Precondition: none
+ * Postcondition: modules loaded
+ ***/
 angular.module('angular_chat', ['ui.bootstrap']);
 
 /***
