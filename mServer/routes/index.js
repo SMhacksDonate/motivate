@@ -99,4 +99,20 @@ router.post('/complete_goal', function(req, res, next) {
     }
     
 });
+
+router.post('/goals', function(req, res, next) {
+    var username = req.body.username;
+    var user = db.get("users")
+               .find({username:username})
+               .value()
+    
+    if(typeof user === "undefined"){
+        res.sendStatus(404);
+    }else{
+        var database = user['goals'];
+        res.json(database);
+    }
+     
+     
+});
 module.exports = router;
