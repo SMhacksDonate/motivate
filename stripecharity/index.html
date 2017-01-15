@@ -10,15 +10,7 @@
 </head>
 <body>
 
-<?php require_once('./config.php'); ?>
 
-<form action="charge.php" method="post">
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<?php echo $stripe['publishable_key']; ?>"
-          data-description="Access for a year"
-          data-amount="5000"
-          data-locale="auto"></script>
-</form>
 <form action="/your-charge-code" method="POST" id="payment-form">
   <span class="payment-errors"></span>
 
@@ -54,9 +46,18 @@
 
   <input type="submit" class="submit" value="Submit Payment">
 </form>
+<?php require_once('./config.php'); ?>
+
+<form action="charge.php" method="post">
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<?php echo $stripe['publishable_key']; ?>"
+          data-description="Access for a year"
+          data-amount="5000"
+          data-locale="auto"></script>
+</form>
 
 </body>
-</div>
+
 
 <!---- this ode should be after the body tag --> 
 <script type="text/javascript">
