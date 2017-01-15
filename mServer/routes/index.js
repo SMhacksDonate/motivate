@@ -49,7 +49,11 @@ router.post('/add_goal', function(req, res, next) {
     
     var goalTitle = req.body.goal['title'];
     
+    var goalDescription = req.body.goal['description'];
+    
     var goalDeadline = req.body.goal['deadline'];
+    
+    var money = req.body.goal['money'];
     
     var user = db.get("users")
               .find({username:username})
@@ -65,7 +69,7 @@ router.post('/add_goal', function(req, res, next) {
         db.get("users")
         .find({username:username})
         .get('goals')
-        .push({name:goalTitle,deadline:goalDeadline,finished:false,donated:false,createdAt:date,id:id})
+        .push({name:goalTitle,deadline:goalDeadline,finished:false,donated:false,createdAt:date,id:id, money:money, description:goalDescription})
         .value()
         
         res.sendStatus(200);
@@ -115,4 +119,30 @@ router.post('/goals', function(req, res, next) {
      
      
 });
+
+router.post('/delete_goal', function(req, res, next) {
+    var username = req.body.username;
+    var password = req.body.password;
+    var goalId = req.body.goalId;
+    
+    var user = db.get("users")
+              .find({username:username})
+              .value()
+    
+    
+    if((typeof user === "undefined" )|| !(user['password'] === password) ){
+        res.sendStatus(409);
+    }else{
+        db.get("users")
+       .find({username:username})
+       .get("goals")
+       .remove({id:goalId})
+       .assign({finished:true})
+       .value()
+        
+        res.sendStatus(200);
+    }
+    
+});
+
 module.exports = router;

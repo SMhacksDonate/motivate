@@ -10,18 +10,12 @@
         {
           "name": "sex",
           "deadline": "21 December",
-          "finished": true,
-          "donated": false,
-          "createdAt": 1484440669735,
-          "id": "ry8v4S_Ig"
-        },
-        {
-          "name": "seasdfx",
-          "deadline": "21 December",
           "finished": false,
           "donated": false,
-          "createdAt": 1484442880221,
-          "id": "B1_-TSdIg"
+          "createdAt": 1484448283558,
+          "id": "ByN7Gw_Lx",
+          "money": "5",
+          "description": "AvikxCarolyn"
         }
       ]
     }
