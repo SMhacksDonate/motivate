@@ -53,8 +53,15 @@
 <!---- this ode should be after the body tag --> 
 <script type="text/javascript">
   Stripe.setPublishableKey('pk_test_tweCk7wsgWmhPQl30DGMfpro');
+  Stripe.card.createToken({
+    number: $('.card-number').val(),
+    cvc: $('.card-cvc').val(),
+    exp_month: $('.card-expiry-month').val(),
+    exp_year: $('.card-expiry-year').val()
+  }, stripeResponseHandler);
 </script>
 <script>
+
 function stripeResponseHandler(status, response) {
   // Grab the form:
   var $form = $('#payment-form');
