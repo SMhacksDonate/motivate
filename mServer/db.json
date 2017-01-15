@@ -10,7 +10,7 @@
         {
           "name": "sex",
           "deadline": "21 December",
-          "finished": false,
+          "finished": true,
           "donated": false,
           "createdAt": 1484440669735,
           "id": "ry8v4S_Ig"

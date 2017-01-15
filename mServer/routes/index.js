@@ -74,4 +74,29 @@ router.post('/add_goal', function(req, res, next) {
 
     
 });
+
+router.post('/complete_goal', function(req, res, next) {
+    var username = req.body.username;
+    var password = req.body.password;
+    var goalId = req.body.goalId;
+    
+    var user = db.get("users")
+              .find({username:username})
+              .value()
+    
+    
+    if((typeof user === "undefined" )|| !(user['password'] === password) ){
+        res.sendStatus(409);
+    }else{
+       db.get("users")
+       .find({username:username})
+       .get("goals")
+       .find({id:goalId})
+       .assign({finished:true})
+       .value()
+        
+        res.sendStatus(200);
+    }
+    
+});
 module.exports = router;
