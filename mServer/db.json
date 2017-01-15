@@ -6,23 +6,16 @@
       "lastName": "ASDF",
       "password": "ASDF",
       "createdAt": 1484436403780,
-      "goals": []
-    },
-    {
-      "username": "sdf",
-      "firstName": "SADF",
-      "lastName": "ASDF",
-      "password": "ASDF",
-      "createdAt": 1484436680825,
-      "goals": []
-    },
-    {
-      "username": "sdf",
-      "firstName": "SADF",
-      "lastName": "ASDF",
-      "password": "ASDF",
-      "createdAt": 1484436927456,
-      "goals": []
+      "goals": [
+        {
+          "name": "sex",
+          "deadline": "21 December",
+          "finished": false,
+          "donated": false,
+          "createdAt": 1484440669735,
+          "id": "ry8v4S_Ig"
+        }
+      ]
     }
   ]
 }

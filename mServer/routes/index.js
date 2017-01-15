@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var low = require('lowdb');
 const db = low('db.json');
+var shortid = require('shortid');
 
 
 var app = express();
@@ -22,7 +23,7 @@ router.post('/signup', function(req, res, next) {
                  .value()
     
     if(!(typeof repeat ==='undefined')){
-        res.sendStatus(409)
+        res.sendStatus(409);
     }else{
     
     
@@ -37,15 +38,40 @@ router.post('/signup', function(req, res, next) {
 
         res.sendStatus(200);
     }
-    
-    
-    
-    
-
 });
 
-router.get('/', function(req,res,next){
+
+router.post('/add_goal', function(req, res, next) {
+    var username = req.body.username;
+    var password = req.body.password;
+    
+    
+    
+    var goalTitle = req.body.goal['title'];
+    
+    var goalDeadline = req.body.goal['deadline'];
+    
+    var user = db.get("users")
+              .find({username:username})
+              .value()
+    
+    
+    if((typeof user === "undefined" )|| !(user['password'] === password) ){
+        res.sendStatus(409);
+    }else{
+        var date = Date.now();
+        var id = shortid.generate();
+        
+        db.get("users")
+        .find({username:username})
+        .get('goals')
+        .push({name:goalTitle,deadline:goalDeadline,finished:false,donated:false,createdAt:date,id:id})
+        .value()
+        
+        res.sendStatus(200);
+    }
+    
+
     
 });
-
 module.exports = router;
