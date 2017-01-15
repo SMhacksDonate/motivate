@@ -104,8 +104,8 @@ router.post('/complete_goal', function(req, res, next) {
     
 });
 
-router.post('/goals', function(req, res, next) {
-    var username = req.body.username;
+router.get('/goals', function(req, res, next) {
+    var username = req.query.username;
     var user = db.get("users")
                .find({username:username})
                .value()
