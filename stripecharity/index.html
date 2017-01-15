@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 <head>
+  <meta charset="utf-8">
   <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
   <script
   src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -9,7 +10,6 @@
 
 </head>
 <body>
-
 
 <form action="/your-charge-code" method="POST" id="payment-form">
   <span class="payment-errors"></span>
@@ -46,21 +46,19 @@
 
   <input type="submit" class="submit" value="Submit Payment">
 </form>
-<?php require_once('./config.php'); ?>
 
-<form action="charge.php" method="post">
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<?php echo $stripe['publishable_key']; ?>"
-          data-description="Access for a year"
-          data-amount="5000"
-          data-locale="auto"></script>
-</form>
 
 </body>
 
 
 <!---- this ode should be after the body tag --> 
 <script type="text/javascript">
+  function stripeResponseHandler(status, response) {
+  
+    console.log(status);
+    console.log(response);
+  };
+
   Stripe.setPublishableKey('pk_test_tweCk7wsgWmhPQl30DGMfpro');
   Stripe.card.createToken({
     number: $('.card-number').val(),
@@ -70,31 +68,7 @@
   }, stripeResponseHandler);
 </script>
 <script>
-
-function stripeResponseHandler(status, response) {
-  // Grab the form:
-  var $form = $('#payment-form');
-
-  if (response.error) { // Problem!
-
-    // Show the errors on the form:
-    $form.find('.payment-errors').text(response.error.message);
-    $form.find('.submit').prop('disabled', false); // Re-enable submission
-
-  } else { // Token was created!
-
-    // Get the token ID:
-    var token = response.id;
-
-    // Insert the token ID into the form so it gets submitted to the server:
-    $form.append($('<input type="hidden" name="stripeToken">').val(token));
-
-    // Submit the form:
-    $form.get(0).submit();
-  }
-};
-
-$(function() {
+  $(function() {
   var $form = $('#payment-form');
   $form.submit(function(event) {
     // Disable the submit button to prevent repeated clicks:
@@ -107,5 +81,8 @@ $(function() {
     return false;
   });
 });
+
+
+
 </script>
 </html>
